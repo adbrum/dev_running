@@ -10,12 +10,12 @@ const Header = (props) => {
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo"/>
       <h1 className="App-title">Welcome to React</h1>
-      <ul>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/admin'>Admin</Link></li>
-        <li><Link to='/restrito'>Restrito</Link></li>
-        <li><Link to='/login'>Login</Link></li>
-      </ul>
+      <div>
+        <Link to='/'>Home</Link>
+        <Link to='/admin'>Admin</Link>
+        <Link to='/restrict'>Restrict</Link>
+        <Link to='/login'>Login</Link>
+      </div>
     </header>
   )
 }

@@ -5,29 +5,10 @@ import store from './redux'
 import {Provider} from 'react-redux'
 import Header from "./Header";
 import {Route, BrowserRouter as Router} from 'react-router-dom'
-
-const Home = (props) => {
-  return (
-    <h1>Home</h1>
-  )
-}
-const Admin = (props) => {
-  return (
-    <h1>Admin</h1>
-  )
-}
-const Restrito = (props) => {
-  return (
-    <h1>Restrito</h1>
-  )
-}
-const Login = (props) => {
-  return (
-    <h1>Login</h1>
-  )
-}
-
-
+import Home from './screens/Home'
+import Login from './screens/Login'
+import Admin from './screens/Admin/index'
+import Restrict from './screens/Restrict/index'
 
 class App extends Component {
 
@@ -60,7 +41,7 @@ class App extends Component {
           <div className="App">
             <Route exact path='/' component={Home}/>
             <Route path='/admin' component={Admin}/>
-            <Route path='/restrito' component={Restrito}/>
+            <Route path='/restrict' component={Restrict}/>
             <Route path='/login' component={Login}/>
             <Header/>
             <p className="App-intro">
