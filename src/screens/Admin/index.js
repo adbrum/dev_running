@@ -1,14 +1,23 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const Home = props => <h1>Home admin</h1>
 const Users = props => <h1>Users admin</h1>
 
 const Admin = (props) => {
+  if (!props.auth.isAuth){
+    return <Redirect to='/login'/>
+  }
+  if (props.auth.user.role !== 'admin'){
+    return <Redirect to='/restrict'/>
+  }
+
   return (
     <div>
     <h1>Admin</h1>
       <p>
+        {JSON.stringify(props.auth)}
         <Link to='/admin'>Home admin</Link>
         <Link to='/admin/users'>Users admin</Link>
       </p>
@@ -19,5 +28,10 @@ const Admin = (props) => {
     </div>
   )
 }
+const mapStateToProps = state => {
+  return{
+    auth: state.auth
+  }
+}
 
-export default Admin
+export default connect(mapStateToProps)(Admin)

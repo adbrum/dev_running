@@ -11,29 +11,6 @@ import Admin from './screens/Admin/index'
 import Restrict from './screens/Restrict/index'
 
 class App extends Component {
-
-  /*async componentDidMount(){
-    let token = localStorage.getItem('token')
-    if(!token){
-      const login = await axios.post('http://localhost:3001/users/login', {
-        email: 'tuliofaria@devpleno.com',
-        passwd: 'abc123'
-      })
-      token = login.data.token
-      localStorage.setItem('token', token)
-    }
-    const decoded = jwtDecode(token)
-    console.log(decoded)
-
-    const user = axios.get('http://localhost:3001/users/me', {
-      headers: {
-        Authorization: 'Bearer '+token
-      }
-    })
-
-    console.log(user)
-
-  }/*/
   render() {
     return (
       <Provider store={store}>
