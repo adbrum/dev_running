@@ -17,7 +17,6 @@ const Admin = (props) => {
     <div>
     <h1>Admin</h1>
       <p>
-        {JSON.stringify(props.auth)}
         <Link to='/admin'>Home admin</Link>
         <Link to='/admin/users'>Users admin</Link>
       </p>
@@ -35,3 +34,4 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(Admin)
+
