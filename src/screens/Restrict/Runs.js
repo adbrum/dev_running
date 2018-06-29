@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ActionCreators from '../../redux/actionCreators'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
+import {Table, Button} from 'semantic-ui-react'
 
 class Runs extends Component {
   componentDidMount() {
@@ -8,21 +9,21 @@ class Runs extends Component {
   }
 
   renderRun(run) {
-    return(
-      <tr>
-        <td>
+    return (
+      <Table.Row>
+        <Table.Cell>
           {run.friendly_name}
-        </td>
-        <td>
+        </Table.Cell>
+        <Table.Cell>
           {run.duration}
-        </td>
-        <td>
+        </Table.Cell>
+        <Table.Cell>
           {run.distance}
-        </td>
-        <td>
+        </Table.Cell>
+        <Table.Cell>
           {run.created}
-        </td>
-      </tr>
+        </Table.Cell>
+      </Table.Row>
     )
   }
 
@@ -37,10 +38,18 @@ class Runs extends Component {
     return (
       <div>
         <h1>Runs</h1>
-        <button onClick={() => this.props.create(run)}>Create</button>
-        <table>
-          { this.props.runs.data.map(this.renderRun)}
-        </table>
+        <Button onClick={() => this.props.create(run)}>Create</Button>
+        <Table celled>
+          <Table.Header>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>duration</Table.HeaderCell>
+            <Table.HeaderCell>distance</Table.HeaderCell>
+            <Table.HeaderCell>created</Table.HeaderCell>
+          </Table.Header>
+          <Table.Body>
+            {this.props.runs.data.map(this.renderRun)}
+          </Table.Body>
+        </Table>
       </div>
     );
   }
@@ -54,7 +63,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    load : () => dispatch(ActionCreators.getRunsRequest()),
+    load: () => dispatch(ActionCreators.getRunsRequest()),
     create: (run) => dispatch(ActionCreators.createRunRequest(run))
   }
 }
