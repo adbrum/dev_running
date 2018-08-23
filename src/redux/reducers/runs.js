@@ -9,7 +9,7 @@ export const INITIAL_STATE = {
 export const getRunsRequest = (state = INITIAL_STATE, action) => {
   return {
     ...state,
-    isLoading: true,
+    isLoading: true
   }
 }
 
@@ -17,21 +17,21 @@ export const getRunsSuccess = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     isLoading: false,
-    data: action.runs,
+    data: action.runs
   }
 }
 
 export const getRunsFailure = (state = INITIAL_STATE, action) => {
   return {
     ...state,
-    isLoading: false,
+    isLoading: false
   }
 }
 
 export const HANDLERS = {
   [Types.GET_RUNS_REQUEST]: getRunsRequest,
   [Types.GET_RUNS_SUCCESS]: getRunsSuccess,
-  [Types.GET_RUNS_FAILURE]: getRunsFailure,
+  [Types.GET_RUNS_FAILURE]: getRunsFailure
 }
 
 export default createReducer(INITIAL_STATE, HANDLERS)

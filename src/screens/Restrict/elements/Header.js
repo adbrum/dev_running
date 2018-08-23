@@ -1,16 +1,30 @@
-import React from 'react';
-import {connect} from 'react-redux'
+import React from 'react'
+import { connect } from 'react-redux'
 import ActionCreators from '../../../redux/actionCreators'
-import {Link} from 'react-router-dom'
-import { Menu } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import { Menu, Dropdown } from 'semantic-ui-react'
 
-const Header = (props) => {
-
+const Header = props => {
   return (
     <Menu>
-        <Menu.Item>Corridas <b>Restrict</b></Menu.Item>
-        <Menu.Item as={Link} to='/restrict'>Home</Menu.Item>
-        <Menu.Item as={Link} to='/restrict/runs'>Racing</Menu.Item>
+      <Menu.Item>
+        Corridas <b>Restrict</b>
+      </Menu.Item>
+      <Menu.Item as={Link} to="/restrict">
+        Home
+      </Menu.Item>
+      <Menu.Item as={Link} to="/restrict/runs">
+        Racing
+      </Menu.Item>
+      <Menu.Menu position="right">
+        <Dropdown item text={props.auth.user.name}>
+          <Dropdown.Menu>
+            <Dropdown.Item> Minha conta</Dropdown.Item>
+            <Dropdown.Item> Alerar senha</Dropdown.Item>
+            <Dropdown.Item onClick={props.logout}> Sair</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Menu.Menu>
     </Menu>
   )
 }
@@ -22,8 +36,12 @@ const mapStateToProps = state => {
 
 const mapDispacheToProps = dispatch => {
   return {
-    signin: (email, passwd) => ActionCreators.signinRequest(email, passwd)
+    signin: (email, passwd) => ActionCreators.signinRequest(email, passwd),
+    logout: () => dispatch(ActionCreators.destroyAuthRequest())
   }
 }
 
-export default connect(mapStateToProps, mapDispacheToProps)(Header)
+export default connect(
+  mapStateToProps,
+  mapDispacheToProps
+)(Header)
